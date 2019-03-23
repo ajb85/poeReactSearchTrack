@@ -1,22 +1,22 @@
 @import "../../sassVariables.scss";
+$transition: 0.15s;
+$width: 150px;
+$height: 300px;
+$padding: 20px;
 
-.scrollMenu {
+.container {
   position: absolute;
   right: 265px;
   top: -70px;
-  text-align: right;
-  background-color: darken($bgColor, 20%);
-  padding: 20px;
+  max-height: $height + 2 * $padding;
+  max-width: $width + 2 * $padding;
+  padding: $padding 0;
+  //width: 100%;
   border-radius: 10px;
-
-  p {
-    white-space: nowrap;
-    cursor: pointer;
-
-    &:hover {
-      text-decoration: underline;
-    }
-  }
+  transition: $transition;
+  display: flex;
+  align-items: center;
+  background-color: darken($bgColor, 20%);
 
   &.inactive {
     opacity: 0;
@@ -24,9 +24,48 @@
   }
 }
 
+.scrollMenu {
+  padding: $padding/4 0;
+  text-align: right;
+  max-height: $height;
+  width: 100%;
+  overflow-y: auto;
+  overflow-x: hidden;
+  direction: rtl;
+
+  &::-webkit-scrollbar {
+    width: 5px;
+  }
+
+  &::-webkit-scrollbar-thumb {
+    background: $teal;
+    //display: none;
+  }
+
+  p.item {
+    white-space: nowrap;
+    cursor: pointer;
+    margin-bottom: 0px;
+    padding: $padding/2 $padding/1.4;
+
+    &:hover {
+      text-decoration: underline;
+    }
+
+    &:first-of-type {
+      padding-top: 0px;
+    }
+
+    &:last-of-type {
+      padding-bottom: 0px;
+    }
+  }
+}
+
 .arrow {
   position: absolute;
   right: -20px;
+  top: 21px;
 
   border: 10px solid transparent;
   border-left: 10px solid darken($bgColor, 20%);

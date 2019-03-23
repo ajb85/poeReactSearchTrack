@@ -3,32 +3,44 @@ import styles from "./styles.module.scss";
 import ScrollMenu from "../ScrollMenu";
 
 function Dropdown(props) {
-  // Setup conditional rendering based on context
-  let visible, click, defaultText;
-  if (props.title === "Profile") {
-    visible = props.formState.clicks.profile;
+  // --> Destructuring
+  const { title, scrollData, fullState } = props;
+  const [overlay, dispatch] = fullState;
+
+  // --> Setup conditional rendering based on context
+  let visible, click, activeItem, actionType;
+  if (title === "Profile") {
+    visible = overlay.clicks.profile;
     click = "PROFILE_CLICK";
-    defaultText = props.formState.profile;
+    activeItem = overlay.profile;
+    actionType = "SELECT_PROFILE";
   } else {
-    visible = props.formState.clicks.existing;
+    visible = overlay.clicks.existing;
     click = "EXISTING_CLICK";
-    defaultText = "";
+    activeItem = overlay.existing;
+    actionType = "SELECT_EXISTING";
   }
+
   return (
     <div className={styles.dropdown}>
-      <p>{props.title}: </p>
+      <p>{title}: </p>
       <button
         name="dropdown"
         type="button"
-        onClick={() => props.dispatch({ type: click })}
+        onClick={() => dispatch({ type: click })}
       >
-        {defaultText}
+        {activeItem}
         <i
-          onClick={() => props.dispatch({ type: click })}
+          onClick={() => dispatch({ type: click })}
           className="fas fa-caret-down"
         />
       </button>
-      <ScrollMenu visible={visible} list={props.scrollData} />
+      <ScrollMenu
+        visible={visible}
+        list={scrollData}
+        dispatch={dispatch}
+        actionType={actionType}
+      />
     </div>
   );
 }

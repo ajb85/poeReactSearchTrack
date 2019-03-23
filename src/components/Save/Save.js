@@ -4,14 +4,15 @@ import InputName from "../InputName";
 import styles from "./styles.module.scss";
 
 function Save(props) {
-  // --> Destructuring to attempt making code easier to read
-  const { formState, profiles, dispatch, input } = props;
-  const { showForm, profile, newName } = formState;
+  // --> Destructuring to (hopefully) make code easier to read
+  const { fullState, input } = props;
+  const [overlay, dispatch] = fullState;
+  const { showForm, profile, newName, profiles } = overlay;
 
   // --> "Methods"
   const submitLink = e => {
     e.preventDefault();
-    // Save Link
+    // ********* Save Link to chrome here
     dispatch({ type: "CLEAR_NAME" });
     dispatch({ type: "HIDE_SAVE" });
   };
@@ -23,7 +24,7 @@ function Save(props) {
     }
   };
 
-  // --> Extracting logic out of the return
+  // --> Extracting logic out of the render() return
   let appClassName = `${styles.App}`;
   if (showForm !== null) {
     // showForm will initialize as null to avoid animating
@@ -32,7 +33,8 @@ function Save(props) {
     // a show/hide class
     appClassName += ` ${showForm ? styles.show : styles.hide}`;
   }
-  const existingScrollData = profile ? profiles[profile].saves : [];
+  const activeProfileSavedLinks = profile ? profiles[profile].saves : [];
+  const listOfProfiles = profiles ? Object.keys(profiles) : [];
 
   return (
     <div className={appClassName} onClick={e => clearClicks(e.target)}>
@@ -44,15 +46,13 @@ function Save(props) {
       <form onSubmit={submitLink}>
         <Dropdown
           title={"Profile"}
-          scrollData={Object.keys(profiles)}
-          formState={formState}
-          dispatch={dispatch}
+          scrollData={listOfProfiles}
+          fullState={fullState}
         />
         <Dropdown
           title={"Update Existing Link"}
-          scrollData={existingScrollData}
-          formState={formState}
-          dispatch={dispatch}
+          scrollData={activeProfileSavedLinks}
+          fullState={fullState}
         />
         <InputName name={newName} dispatch={dispatch} input={input} />
         <button className={styles.submit} type="submit">
