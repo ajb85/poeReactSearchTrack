@@ -1,5 +1,5 @@
 import React, { useEffect, useReducer } from "react";
-import styles from "./styles.module.scss";
+//import styles from "./styles.module.scss";
 import Save from "../Save";
 import HomeButtons from "../HomeButtons";
 import { initialState, formReducer } from "./reducers/overlay.js";
