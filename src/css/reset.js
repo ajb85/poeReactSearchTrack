@@ -3,7 +3,7 @@
    License: none (public domain)
 */
 
-html,
+export default `html,
 body,
 div,
 span,
@@ -128,5 +128,6 @@ table {
   border-spacing: 0;
 }
 * {
-  box-sizing: border-box;
+  box-sizing: content-box;
 }
+`;

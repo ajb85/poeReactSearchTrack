@@ -1,7 +1,8 @@
 import React from "react";
 import Dropdown from "../Dropdown";
 import InputName from "../InputName";
-import styles from "./styles.module.scss";
+import styles from "./styles.js";
+import searchDOM from "./searchDOM.js";
 
 function Save(props) {
   // --> Destructuring to (hopefully) make code easier to read
@@ -13,6 +14,7 @@ function Save(props) {
   const submitLink = e => {
     e.preventDefault();
     // ********* Save Link to chrome here
+    searchDOM();
     dispatch({ type: "CLEAR_NAME" });
     dispatch({ type: "HIDE_SAVE" });
   };
@@ -25,25 +27,26 @@ function Save(props) {
   };
 
   // --> Extracting logic out of the render() return
-  let appClassName = `${styles.App}`;
+  let appClassName = `saveWindow`;
   if (showForm !== null) {
     // showForm will initialize as null to avoid animating
     // on load.  Once the user clicks "Save", the value will
     // either be true or false and thus appClassName receives
     // a show/hide class
-    appClassName += ` ${showForm ? styles.show : styles.hide}`;
+    appClassName += showForm ? ` show` : ` hide`;
   }
   const activeProfileSavedLinks = profile ? profiles[profile].saves : [];
   const listOfProfiles = profiles ? Object.keys(profiles) : [];
 
   return (
     <div className={appClassName} onClick={e => clearClicks(e.target)}>
+      <style>{styles}</style>
       <h2>Save Link</h2>
       <i
         onClick={() => dispatch({ type: "TOGGLE_SAVE_FORM" })}
-        className={`${styles.close} fas fa-times`}
+        className={`close fas fa-times`}
       />
-      <form onSubmit={submitLink}>
+      <form onSubmit={() => submitLink()}>
         <Dropdown
           title={"Profile"}
           scrollData={listOfProfiles}
@@ -55,7 +58,7 @@ function Save(props) {
           fullState={fullState}
         />
         <InputName name={newName} dispatch={dispatch} input={input} />
-        <button className={styles.submit} type="submit">
+        <button className="saveLink" type="submit">
           Save Link
         </button>
       </form>

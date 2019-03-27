@@ -1,6 +1,6 @@
 import React from "react";
-import "./css/reset.css";
-import "./css/globalStyles.css";
+//import "./css/reset.css";
+//import "./css/globalStyles.css";
 //import Overlay from "./components/Overlay";
 
 function App() {

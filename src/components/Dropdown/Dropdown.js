@@ -1,5 +1,5 @@
 import React from "react";
-import styles from "./styles.module.scss";
+import styles from "./styles.js";
 
 import ScrollMenu from "../ScrollMenu";
 
@@ -22,8 +22,11 @@ function Dropdown(props) {
     actionType = "SELECT_EXISTING";
   }
 
+  const arrowRotation = visible ? "rotated" : "";
+
   return (
-    <div className={styles.dropdown}>
+    <div className="dropdown">
+      <style>{styles}</style>
       <p>{title}: </p>
       <button
         name="dropdown"
@@ -33,7 +36,7 @@ function Dropdown(props) {
         {activeItem}
         <i
           onClick={() => dispatch({ type: click })}
-          className="fas fa-caret-down"
+          className={`${arrowRotation} fas fa-caret-down`}
         />
       </button>
       <ScrollMenu

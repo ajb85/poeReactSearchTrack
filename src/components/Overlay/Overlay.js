@@ -1,10 +1,9 @@
-import React, { useState, useEffect, useReducer } from "react";
+import React, { useEffect, useReducer } from "react";
 import ReactDOM from "react-dom";
 import ShadowDOM from "react-shadow";
 
 //import styles from "./styles.module.scss";
-import "css/reset.css";
-import "css/globalStyles.css";
+import reset from "css/reset.js";
 import Save from "../Save";
 import HomeButtons from "../HomeButtons";
 import { initialState, formReducer } from "./reducers/overlay.js";
@@ -15,7 +14,6 @@ function Overlay() {
   // --> Save Form state management
   const fullState = useReducer(formReducer, initialState);
   const [overlay, dispatch] = fullState;
-  const [extStyle, setExtStyle] = useState("");
 
   useEffect(() => {
     // CDM
@@ -33,13 +31,13 @@ function Overlay() {
       }
     }
   }, []);
-  console.log("Style: ", extStyle);
   return (
     <div>
       <style>
         @import "https://use.fontawesome.com/releases/v5.8.1/css/all.css"
         screen;
       </style>
+      <style>{reset}</style>
       <HomeButtons
         showForm={overlay.showForm}
         dispatch={dispatch}

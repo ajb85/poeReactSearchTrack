@@ -1,17 +1,15 @@
 import React from "react";
-import styles from "./styles.module.scss";
+import styles from "./styles.js";
 
-function InputName(props) {
+function InputName({ input, name, dispatch }) {
   return (
-    <div className={styles.inputBox}>
+    <div className="inputBox">
       <p>Save as Name: </p>
       <input
-        ref={props.input}
+        ref={input}
         type="text"
-        value={props.name}
-        onChange={e =>
-          props.dispatch({ type: "NEW_NAME", payload: e.target.value })
-        }
+        value={name}
+        onChange={e => dispatch({ type: "NEW_NAME", payload: e.target.value })}
       />
     </div>
   );

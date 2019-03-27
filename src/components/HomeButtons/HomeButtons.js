@@ -1,7 +1,5 @@
 import React from "react";
-//import styles from "./styles.module.scss";
-
-//import { SwitchButton, NewButton, SaveButton } from "./styles.js";
+import styles from "./styles.js";
 
 function HomeButtons(props) {
   // --> Set focus on new name input when save button is clicked
@@ -15,38 +13,6 @@ function HomeButtons(props) {
     }
     props.dispatch({ type: "TOGGLE_SAVE_FORM" });
   };
-  const styles = `
-    .buttons {
-      background-color: #575456;
-      color: #90ada5;
-      border: 1px solid #cb8371;
-      position: fixed;
-      right: 2px;
-      z-index: 1000;
-      font-size: 18px;
-      width: 60px;
-    }
-
-    .buttons:hover {
-      background-color: #302e2f;
-    }
-
-    .buttons:active {
-      transform: translateY(1px);
-      outline-color: #90ada5;
-    }
-
-    .switch {
-      top: 5%;
-    }
-
-    .new {
-      top: 11%;
-    }
-
-    .save {
-      top: 17%;
-    }`;
 
   return (
     <React.Fragment>

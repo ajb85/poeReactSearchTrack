@@ -16,8 +16,7 @@
         "static/js/0.chunk.js",
         "static/js/3.chunk.js",
         "static/js/overlay.js"
-      ],
-      "css": ["static/css/overlay.css"]
+      ]
     }
   ],
   "browser_action": {
