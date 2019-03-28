@@ -2,7 +2,7 @@ import React from "react";
 import Dropdown from "../Dropdown";
 import InputName from "../InputName";
 import styles from "./styles.js";
-import searchDOM from "./searchDOM.js";
+import searchDOM from "dotTradeDOMLookups/saveLink.js";
 
 function Save(props) {
   // --> Destructuring to (hopefully) make code easier to read
@@ -46,7 +46,7 @@ function Save(props) {
         onClick={() => dispatch({ type: "TOGGLE_SAVE_FORM" })}
         className={`close fas fa-times`}
       />
-      <form onSubmit={() => submitLink()}>
+      <form onSubmit={e => submitLink(e)}>
         <Dropdown
           title={"Profile"}
           scrollData={listOfProfiles}

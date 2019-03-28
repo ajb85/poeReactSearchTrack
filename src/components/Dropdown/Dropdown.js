@@ -34,6 +34,7 @@ function Dropdown(props) {
         onClick={() => dispatch({ type: click })}
       >
         {activeItem}
+        <div className="whiteSpace" />
         <i
           onClick={() => dispatch({ type: click })}
           className={`${arrowRotation} fas fa-caret-down`}

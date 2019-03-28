@@ -10,13 +10,19 @@ export default `.dropdown button {
 }
 .dropdown button i {
   float: right;
-  padding-right: 10px;
-  transition: 0.25s;
+  transition: 0.1s;
 }
 
 .dropdown button i.rotated {
   transform: rotate(90deg);
-  transform-origin: 24% 40%;
+  transform-origin: 50% 50%;
+}
+
+.dropdown button .whiteSpace {
+  width: 10px;
+  min-height: 1px;
+  float: right;
+  display:inline-block;
 }
 
 .dropdown button:hover {
