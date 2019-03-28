@@ -1,9 +1,9 @@
 // Navigate the DOM tree and save values of interest to build a search object
-import { getLeagueTypeBase, getName, getStats } from "./lookUp.js";
+import { findLeagueTypeBase, findName, findMinMaxValues } from "./lookUp.js";
 
 export default function searchDOM() {
-  const leagueTypeBase = getLeagueTypeBase();
-  const name = getName();
-  const stats = getStats();
-  console.log({ ...leagueTypeBase, ...name, ...stats });
+  const leagueTypeBase = findLeagueTypeBase();
+  const name = findName();
+  const minMax = findMinMaxValues();
+  console.log({ ...leagueTypeBase, ...name, ...minMax });
 }
